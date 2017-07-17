@@ -1,4 +1,4 @@
-#Installation and Setup
+# Installation and Setup  
 In order to run this project, UAA OAuth server needs to be set up first. 
 
 ## Steps to set up Cloud Foundry UAA server
