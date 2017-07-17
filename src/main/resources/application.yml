@@ -1,0 +1,20 @@
+info:
+    app:
+        desc: API reference
+        name: sample-service
+logging:
+    level:
+        org:
+            springframework:
+                security: DEBUG
+server:
+    contextPath: /api/v1/sample/
+    use-forward-headers: true    
+
+uaa:
+  url: ${UAA_URI:http://localhost:8080/uaa}
+  # Client ID on whose behalf the access_token will be verified by Resource Server
+  clientId: uaa-ui-client
+  clientSecret: secret
+
+    

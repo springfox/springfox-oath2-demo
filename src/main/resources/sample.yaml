@@ -1,0 +1,132 @@
+swagger: '2.0'
+info:
+  title: Sample Rest Service
+  description: >-
+    Sample Rest Service to showcase Swagger integration with OAuth
+  version: 0.0.2
+host: localhost
+schemes:
+  - http
+basePath: /api/v1/sample
+produces:
+  - application/json
+paths:
+  /users:
+    get:
+      summary: List of Users.
+      security:
+        - OAuth2: [write_scope, read_scope, admin_scope]
+      description: Returns List of users.      
+      responses:
+        '200':
+          description: An array of users.
+          schema:
+            type: object        
+    post:
+      summary: Create User.
+      security:
+        - OAuth2: [write_scope, admin_scope]
+      description: Creates user.
+      parameters:
+        - name: body
+          in: body
+          description: The body of type user
+          required: true
+          schema:
+            $ref: '#/definitions/User'
+      responses:
+        '201':
+          description: User created
+          schema:
+            $ref: '#/definitions/User'
+  '/users/{user_id}':
+    get:
+      summary: Single user.
+      security:
+        - OAuth2: [write_scope, read_scope, admin_scope]
+      description: Returns a specific user.
+      parameters:
+        - name: user_id
+          in: path
+          description: Unique id of the user
+          required: true
+          type: string
+      responses:
+        '200':
+          description: The requested user.
+          schema:
+            $ref: '#/definitions/User'
+        '404':
+          description: User
+    put:
+      summary: Update user.
+      security:
+        - OAuth2: [write_scope, admin_scope]
+      description: Updates an existing user.
+      parameters:
+        - name: user_id
+          in: path
+          description: Unique identifier of user
+          required: true
+          type: string
+        - in: body
+          name: body
+          description: Elements of the user to be updated
+          required: true
+          schema:
+            $ref: '#/definitions/User'
+      responses:
+        '201':
+          description: User created
+          schema:
+            $ref: '#/definitions/User'
+        '404':
+          description: User not found
+    delete:
+      summary: Deletes user.
+      security:
+        - OAuth2: [admin_scope]
+      description: Deletes an existing user.
+      parameters:
+        - name: user_id
+          in: path
+          description: Unique identifier of user to be deleted
+          required: true
+          type: string
+      responses:
+        '204':
+          description: 'User deleted, no data returned'
+        '404':
+          description: User not found 
+            
+definitions:
+  User:
+    type: object
+    description: >-
+      User
+    properties:
+      user_id:
+        type: string
+        description: >-
+          Unique identifier 
+      firstName:
+        type: string
+        description: First Name.
+      lastName:
+        type: string
+        description: Last Name
+      age:
+        type: int32
+        description: Age
+  
+securityDefinitions:
+  OAuth2:
+    type: oauth2
+    flow: accessCode
+    authorizationUrl: https://iam-ots-dev.mo-siemens.com/oauth/authorize
+    tokenUrl: https://iam-ots-dev.mo-siemens.com/oauth/token
+    scopes:
+      read_scope: Grants read access
+      write_scope: Grants write access
+      admin_scope: Grants read write and delete access
+      
