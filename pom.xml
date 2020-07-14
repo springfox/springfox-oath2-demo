@@ -11,7 +11,7 @@
 		<java.version>1.8</java.version>
 		<maven.compiler.source>${java.version}</maven.compiler.source>
 		<maven.compiler.target>${java.version}</maven.compiler.target>
-		<springfox-version>2.7.0</springfox-version>
+		<springfox-version>3.0.0</springfox-version>
 		<default.package>myprojects.sample.oauth</default.package>
 		<build.number>SNAPSHOT</build.number>
 		<version.swagger.codegen>2.2.1</version.swagger.codegen>
