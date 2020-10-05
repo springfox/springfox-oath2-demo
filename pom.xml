@@ -14,7 +14,7 @@
 		<springfox-version>2.7.0</springfox-version>
 		<default.package>myprojects.sample.oauth</default.package>
 		<build.number>SNAPSHOT</build.number>
-		<version.swagger.codegen>2.2.1</version.swagger.codegen>
+		<version.swagger.codegen>2.4.16</version.swagger.codegen>
 	</properties>
 
 	<parent>
